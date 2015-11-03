@@ -181,6 +181,11 @@ download_and_run() {
             dir_name="solr-4.10.3"
             dir_conf="collection1/conf/"
             ;;
+        5.3.0)
+            url="http://archive.apache.org/dist/lucene/solr/5.0.3/solr-5.0.3.tgz"
+            dir_name="solr-5.0.3"
+            dir_conf="collection1/conf/"
+            ;;
     esac
 
     download $url $dir_name
