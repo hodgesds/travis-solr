@@ -182,7 +182,7 @@ download_and_run() {
             dir_conf="collection1/conf/"
             ;;
         5.3.1)
-            url="http://archive.apache.org/dist/lucene/solr/5.0.3/solr-5.3.1.tgz"
+            url="http://archive.apache.org/dist/lucene/solr/5.3.1/solr-5.3.1.tgz"
             dir_name="solr-5.3.1"
             dir_conf="collection1/conf/"
             ;;
@@ -208,7 +208,6 @@ add_core() {
     # prepare our folders
     [[ -d "${dir_name}/example/multicore/${solr_core}" ]] || mkdir $dir_name/example/multicore/$solr_core
     [[ -d "${dir_name}/example/multicore/${solr_core}/conf" ]] || mkdir $dir_name/example/multicore/$solr_core/conf
-    mkdir -p ${dir_name}/example/multicore/${solr_core}/conf
 
     # copy text configs from default single core conf to new core to have proper defaults
     cp -R $dir_name/example/solr/conf/{lang,*.txt} $dir_name/example/multicore/$solr_core/conf/
