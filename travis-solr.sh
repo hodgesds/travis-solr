@@ -189,10 +189,8 @@ download_and_run() {
     esac
 
     download $url $dir_name
+    mkdir -p $dir_name/example/multicore/$SOLR_CORE/conf
     add_core $dir_name $dir_conf $SOLR_CORE "$SOLR_CONFS"
-
-    mkdir -p $dir_name/example/multicore/
-
     run $dir_name $SOLR_PORT $SOLR_CORE
 
     if [ -z "${SOLR_DOCS}" ]
