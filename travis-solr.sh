@@ -46,12 +46,7 @@ run() {
     else
         # go to the solr folder
         cd $1/example
-        if [ "$DEBUG" = "true" ]
-        then
-            java -Djetty.port=$solr_port -Dsolr.solr.home=multicore -jar start.jar &
-        else
-            java -Djetty.port=$solr_port -Dsolr.solr.home=multicore -jar start.jar > /dev/null 2>&1 &
-        fi
+        java -Djetty.port=$solr_port -Dsolr.solr.home=multicore -jar start.jar &
     fi
     wait_for_solr
     cd ../../
@@ -195,11 +190,6 @@ download_and_run() {
 
     download $url $dir_name
     add_core $dir_name $dir_conf $SOLR_CORE "$SOLR_CONFS"
-
-    if [ "$dir_name" = "solr-5.3.1" ]
-    then
-        tar xvf $dir_name
-    fi
     run $dir_name $SOLR_PORT $SOLR_CORE
 
     if [ -z "${SOLR_DOCS}" ]
