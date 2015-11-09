@@ -195,6 +195,11 @@ download_and_run() {
 
     download $url $dir_name
     add_core $dir_name $dir_conf $SOLR_CORE "$SOLR_CONFS"
+
+    if [ "$dir_name" = "solr-5.3.1" ]
+    then
+        tar xvf $dir_name
+    fi
     run $dir_name $SOLR_PORT $SOLR_CORE
 
     if [ -z "${SOLR_DOCS}" ]
