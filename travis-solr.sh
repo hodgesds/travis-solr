@@ -42,13 +42,13 @@ run() {
 
     if [ "$dir_name" = "solr-5.3.1" ]
     then
-        sh $dir_name/bin/solr -e cloud -noprompt
+        ./$dir_name/bin/solr -e cloud -noprompt
+        return
     else
         # go to the solr folder
         cd $1/example
         java -Djetty.port=$solr_port -Dsolr.solr.home=multicore -jar start.jar &
     fi
-    wait_for_solr
     cd ../../
     echo "Started"
 }
@@ -205,6 +205,10 @@ add_core() {
     dir_conf=$2
     solr_core=$3
     solr_confs=$4
+    if [ "$dir_name" = "solr-5.3.1" ]
+    then
+        return
+    fi
     # prepare our folders
     [[ -d "${dir_name}/example/multicore/${solr_core}" ]] || mkdir $dir_name/example/multicore/$solr_core
     [[ -d "${dir_name}/example/multicore/${solr_core}/conf" ]] || mkdir $dir_name/example/multicore/$solr_core/conf
