@@ -42,11 +42,16 @@ run() {
     # go to the solr folder
     cd $1/example
 
-    if [ "$DEBUG" = "true" ]
+    if [ "$dir_name" = "solr-5.3.1" ]
     then
-        java -Djetty.port=$solr_port -Dsolr.solr.home=multicore -jar start.jar &
+        sh $dir_name/bin/solr -e cloud -noprompt
     else
-        java -Djetty.port=$solr_port -Dsolr.solr.home=multicore -jar start.jar > /dev/null 2>&1 &
+        if [ "$DEBUG" = "true" ]
+        then
+            java -Djetty.port=$solr_port -Dsolr.solr.home=multicore -jar start.jar &
+        else
+            java -Djetty.port=$solr_port -Dsolr.solr.home=multicore -jar start.jar > /dev/null 2>&1 &
+        fi
     fi
     wait_for_solr
     cd ../../
