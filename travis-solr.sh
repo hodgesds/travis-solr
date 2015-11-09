@@ -39,13 +39,13 @@ run() {
     echo "Running with folder $dir_name"
     echo "Starting solr on port ${solr_port}..."
 
-    # go to the solr folder
-    cd $1/example
 
     if [ "$dir_name" = "solr-5.3.1" ]
     then
         sh $dir_name/bin/solr -e cloud -noprompt
     else
+        # go to the solr folder
+        cd $1/example
         if [ "$DEBUG" = "true" ]
         then
             java -Djetty.port=$solr_port -Dsolr.solr.home=multicore -jar start.jar &
@@ -194,7 +194,6 @@ download_and_run() {
     esac
 
     download $url $dir_name
-    mkdir -p $dir_name/example/multicore/$SOLR_CORE/conf
     add_core $dir_name $dir_conf $SOLR_CORE "$SOLR_CONFS"
     run $dir_name $SOLR_PORT $SOLR_CORE
 
